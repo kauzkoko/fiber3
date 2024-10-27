@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Edges, Outlines, Line, PositionalAudio } from "@react-three/drei"
 
-export function Boule({ scale = 0.04, color, metalness = 0.5, src, ready = false, lineColor = "black", ...props }) {
+export function Boule({ scale = 0.04, color, metalness = 0.5, src, ready = false, lineColor = "black", wireframe = false, ...props }) {
   const [hovered, hover] = useState(false)
   
   return (
@@ -11,11 +11,12 @@ export function Boule({ scale = 0.04, color, metalness = 0.5, src, ready = false
         onPointerOver={() => hover(true)}
         onPointerOut={() => hover(false)}
         {...props}>
-        <sphereGeometry args={[1, 32, 32]} />
+        <sphereGeometry args={[1, 12, 12]} />
         <meshStandardMaterial 
-          color={color} 
+        //   color={color} 
           roughness={0.15} 
           metalness={metalness} 
+		  wireframe={wireframe}
         />
         <Edges linewidth={2} threshold={15} color={hovered ? "yellow" : "black"} />
         <Outlines thickness={hovered ? 0.05 : 0.01} color={hovered ? "yellow" : "black"} />
@@ -37,7 +38,7 @@ export function Boule({ scale = 0.04, color, metalness = 0.5, src, ready = false
             [props.position[0], props.position[1] + 1, props.position[2]]
           ]}
           color={lineColor}
-          lineWidth={2}
+          lineWidth={8}
         />
       )}
     </group>

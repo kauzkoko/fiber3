@@ -11,8 +11,6 @@ export function Scene({ activeCamera, ready, boules, cochonette }) {
         decay={0} 
         angle={0.2} 
         position={[5, 2.5, 5]} 
-        castShadow
-        shadow-mapSize={512}
       />
       
       <PerspectiveCamera
@@ -33,8 +31,8 @@ export function Scene({ activeCamera, ready, boules, cochonette }) {
       {boules.map((pos, index) => (
         <Boule 
           key={index}
-          castShadow
-          color={index < 3 ? "gray" : "silver"}
+          color={index === 0 ? "blue" : index < 3 ? "gray" : "silver"}
+		  wireframe={index !== 0}
           position={[pos.x, 0.04, pos.z]}
           src={index === 0 ? "/sounds/atmo.mp3" : undefined}
           lineColor={index === 0 ? "yellow" : "black"}
@@ -43,7 +41,6 @@ export function Scene({ activeCamera, ready, boules, cochonette }) {
       ))}
 
       <Boule 
-        castShadow
         scale={0.015}
         color="yellow"
         metalness={0.2}
@@ -51,7 +48,6 @@ export function Scene({ activeCamera, ready, boules, cochonette }) {
       />
 
       <OrbitControls makeDefault dampingFactor={0.3} />
-      <Environment preset="dawn" />
     </>
   )
 }
