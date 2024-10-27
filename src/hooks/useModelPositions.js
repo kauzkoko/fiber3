@@ -2,7 +2,7 @@ export function useModelPositions({ amount = 5 } = {}) {  // Destructure object 
   const generatePositions = () => {
     const positions = []
     const minDistance = 0.08
-    const centerExclusionRadius = 0.02
+    const centerExclusionRadius = 0.03
     
     while (positions.length < amount) {  // Use amount instead of count
       const newPos = {
@@ -10,7 +10,6 @@ export function useModelPositions({ amount = 5 } = {}) {  // Destructure object 
         z: Math.random() * 0.6 - 0.3,
       }
       
-      // Check if too close to center (0,0)
       const distanceToCenter = Math.sqrt(newPos.x * newPos.x + newPos.z * newPos.z)
       if (distanceToCenter < centerExclusionRadius) continue
       

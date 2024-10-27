@@ -1,4 +1,4 @@
-import { PerspectiveCamera, OrbitControls, Environment, PositionalAudio } from "@react-three/drei"
+import { PerspectiveCamera, OrbitControls, Environment } from "@react-three/drei"
 import { Boule } from "./Boule"
 import { Floor } from "./Floor"
 
@@ -36,6 +36,9 @@ export function Scene({ activeCamera, ready, boules, cochonette }) {
           castShadow
           color={index < 3 ? "gray" : "silver"}
           position={[pos.x, 0.04, pos.z]}
+          src={index === 0 ? "/sounds/brick.mp3" : undefined}
+          lineColor={index === 0 ? "yellow" : "black"}
+          ready={ready}
         />
       ))}
 
@@ -46,14 +49,6 @@ export function Scene({ activeCamera, ready, boules, cochonette }) {
         metalness={0.2}
         position={[cochonette.x, 0.015, cochonette.z]}
       />
-      {ready && (
-        <PositionalAudio 
-          autoplay 
-          loop 
-          url="/sounds/another brick in the wall.mp3" 
-          distance={.3}
-        />
-      )}
 
       <OrbitControls makeDefault dampingFactor={0.3} />
       <Environment preset="dawn" />

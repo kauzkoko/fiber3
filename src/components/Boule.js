@@ -1,8 +1,9 @@
 import { useState } from "react"
-import { Edges, Outlines, Line } from "@react-three/drei"
+import { Edges, Outlines, Line, PositionalAudio } from "@react-three/drei"
 
-export function Boule({ scale = 0.04, color, metalness = 0.5, ...props }) {
+export function Boule({ scale = 0.04, color, metalness = 0.5, src, ready = false, lineColor = "black", ...props }) {
   const [hovered, hover] = useState(false)
+  
   return (
     <group>
       <mesh
@@ -18,6 +19,15 @@ export function Boule({ scale = 0.04, color, metalness = 0.5, ...props }) {
         />
         <Edges linewidth={2} threshold={15} color={hovered ? "yellow" : "black"} />
         <Outlines thickness={hovered ? 0.05 : 0.01} color={hovered ? "yellow" : "black"} />
+        
+        {src && ready && (
+          <PositionalAudio 
+            autoplay
+            url={src}
+            distance={1}
+            loop={true}
+          />
+        )}
       </mesh>
 
       {hovered && (
@@ -26,7 +36,7 @@ export function Boule({ scale = 0.04, color, metalness = 0.5, ...props }) {
             [props.position[0], props.position[1], props.position[2]],
             [props.position[0], props.position[1] + 1, props.position[2]]
           ]}
-          color="black"
+          color={lineColor}
           lineWidth={2}
         />
       )}
