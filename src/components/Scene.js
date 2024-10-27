@@ -39,12 +39,13 @@ export function Scene({ activeCamera, ready, boules, cochonette }) {
           wireframe={selectedBoule !== index}
           position={[pos.x, 0.04, pos.z]}
           src={"/sounds/atmo.mp3"}
-          lineColor={selectedBoule === index ? "yellow" : "black"}
+          lineColor={selectedBoule === index ? "black" : "black"}
           ready={ready}
           onSelect={() => setSelectedBoule(index)}
           playing={selectedBoule === index}
           volume={selectedBoule === index ? volume : 0}
           cameraChangedRecently={cameraChangedRecently}
+          selectedBoule={index}
         />
       ))}
 
@@ -54,6 +55,7 @@ export function Scene({ activeCamera, ready, boules, cochonette }) {
         metalness={0.2}
         position={[cochonette.x, 0.015, cochonette.z]}
         activeCamera={activeCamera}
+        selectedBoule={"Cochonette"}
       />
 
       <OrbitControls makeDefault dampingFactor={0.3} />

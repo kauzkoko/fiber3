@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react"
-import { Edges, Outlines, Line, PositionalAudio } from "@react-three/drei"
+import { Edges, Outlines, Line, PositionalAudio, Html } from "@react-three/drei"
 
 function useAudio(url, volume = 1) {
   const audioRef = useRef()
@@ -25,6 +25,7 @@ export function Boule({
   wireframe = false, 
   volume = 0.1,
   cameraChangedRecently,
+  selectedBoule,
   ...props 
 }) {
   const [hovered, hover] = useState(false)
@@ -49,8 +50,8 @@ export function Boule({
           metalness={metalness} 
           wireframe={wireframe}
         />
-        <Edges linewidth={2} threshold={15} color={hovered ? "yellow" : "black"} />
-        <Outlines thickness={hovered ? 0.05 : 0.01} color={hovered ? "yellow" : "black"} />
+        <Edges linewidth={2} threshold={15} color={hovered ? "orange" : "black"} />
+        <Outlines thickness={hovered ? 0.05 : 0.01} color={hovered ? "orange" : "black"} />
         
         {src && ready && !cameraChangedRecently && (
           <PositionalAudio 
@@ -63,14 +64,29 @@ export function Boule({
       </mesh>
 
       {hovered && (
-        <Line 
-          points={[
-            [props.position[0], props.position[1], props.position[2]],
-            [props.position[0], props.position[1] + 1, props.position[2]]
-          ]}
-          color={lineColor}
-          lineWidth={8}
-        />
+        <>
+          <Line 
+            points={[
+              [props.position[0], props.position[1], props.position[2]],
+              [props.position[0], props.position[1] + .2, props.position[2]]
+            ]}
+            color={lineColor}
+            lineWidth={8}
+          />
+          <Html
+            position={[props.position[0], props.position[1] + .25, props.position[2]]}
+            center
+            style={{
+              color: lineColor,
+              fontSize: '14px',
+              textTransform: 'uppercase',
+              userSelect: 'none',
+              textAlign: 'center',
+            }}
+          >
+            <span>{selectedBoule === "Cochonette" ? "Cochonette" : `Boule #${selectedBoule + 1}`}</span>
+          </Html>
+        </>
       )}
     </group>
   )
