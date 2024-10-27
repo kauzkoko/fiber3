@@ -11,9 +11,11 @@
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "latest",
+    "react-use": "^17.5.1",
     "three": "latest"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "typescript": "3.3.3"
   },
   "scripts": {
