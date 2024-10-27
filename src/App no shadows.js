@@ -22,7 +22,7 @@ export default function App() {
   })
 
   return (
-    <Canvas shadows camera={false}>
+    <Canvas camera={false}>
       <Scene 
         activeCamera={activeCamera}
         ready={ready}

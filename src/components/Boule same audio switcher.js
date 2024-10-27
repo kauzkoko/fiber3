@@ -45,7 +45,6 @@ export function Boule({ onSelect, scale = 0.04, color, metalness = 0.5, src, rea
             url={src}
             distance={1}
             loop={true}
-            delay={0.1}
           />
         )}
       </mesh>

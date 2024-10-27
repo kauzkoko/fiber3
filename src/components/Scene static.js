@@ -1,33 +1,42 @@
-import { useState, useEffect, useRef } from "react"
 import { PerspectiveCamera, OrbitControls, Environment } from "@react-three/drei"
 import { Boule } from "./Boule"
 import { Floor } from "./Floor"
-import { useKey } from 'react-use' 
-import { Cameras } from "./Cameras" 
-import { Lights } from "./Lights"
-import { useGameControls } from '../hooks/useGameControls'
 
 export function Scene({ activeCamera, ready, boules, cochonette }) {
-  const { selectedBoule, volume } = useGameControls(boules, ready)
-
   return (
     <>
-      <Lights />
-      <Cameras activeCamera={activeCamera} cochonette={cochonette} />
-      <Floor />
+      <ambientLight intensity={Math.PI / 8} />
+      <spotLight 
+        intensity={Math.PI} 
+        decay={0} 
+        angle={0.2} 
+        position={[5, 2.5, 5]} 
+      />
       
+      <PerspectiveCamera
+        makeDefault={activeCamera === 'main'}
+        position={[-3, 1.5, 3]}
+        fov={35}
+      />
+
+      <PerspectiveCamera
+        makeDefault={activeCamera === 'top'}
+        position={[cochonette.x, 2, cochonette.z]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        fov={35}
+      />
+      
+      <Floor />
+            
       {boules.map((pos, index) => (
         <Boule 
           key={index}
           color={index === 0 ? "blue" : index < 3 ? "gray" : "silver"}
-          wireframe={selectedBoule !== index}
+		  wireframe={index !== 0}
           position={[pos.x, 0.04, pos.z]}
-          src={"/sounds/atmo.mp3"}
-          lineColor={selectedBoule === index ? "yellow" : "black"}
+          src={index === 0 ? "/sounds/atmo.mp3" : undefined}
+          lineColor={index === 0 ? "yellow" : "black"}
           ready={ready}
-          onSelect={() => setSelectedBoule(index)}
-          playing={selectedBoule === index}
-          volume={selectedBoule === index ? volume : 0}
         />
       ))}
 

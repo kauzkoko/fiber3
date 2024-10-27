@@ -1,4 +1,4 @@
-export function useModelPositions({ amount = 5 } = {}) {  // Destructure object param with default
+export function useBoulePositions({ amount = 5 } = {}) {  // Destructure object param with default
   const generatePositions = () => {
     const positions = []
     const minDistance = 0.08
