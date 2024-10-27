@@ -36,7 +36,7 @@ export function Scene({ activeCamera, ready, boules, cochonette }) {
           castShadow
           color={index < 3 ? "gray" : "silver"}
           position={[pos.x, 0.04, pos.z]}
-          src={index === 0 ? "/sounds/brick.mp3" : undefined}
+          src={index === 0 ? "/sounds/atmo.mp3" : undefined}
           lineColor={index === 0 ? "yellow" : "black"}
           ready={ready}
         />
