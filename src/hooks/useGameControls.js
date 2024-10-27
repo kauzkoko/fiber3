@@ -11,31 +11,34 @@ export function useGameControls(boules, ready) {
     }
   }, [ready])
 
-  // Volume controls (1-9)
+  const increaseSelectedBoule = () => {
+    setSelectedBoule(prev => {
+      if (prev === null) return 0
+      return (prev + 1) % boules.length
+    })
+  }
+
+  const decreaseSelectedBoule = () => {
+    setSelectedBoule(prev => {
+      if (prev === null) return boules.length - 1
+      return (prev - 1 + boules.length) % boules.length
+    })
+  }
+
   for (let i = 1; i <= 9; i++) {
     useKey(i.toString(), () => {
       setVolume(i / 10)
     })
   }
 
-  // Boule selection
-  useKey('ArrowLeft', () => {
-    setSelectedBoule(prev => {
-      if (prev === null) return boules.length - 1
-      return (prev - 1 + boules.length) % boules.length
-    })
-  })
-
-  useKey('ArrowRight', () => {
-    setSelectedBoule(prev => {
-      if (prev === null) return 0
-      return (prev + 1) % boules.length
-    })
-  })
+  useKey('ArrowLeft', decreaseSelectedBoule)
+  useKey('ArrowRight', increaseSelectedBoule)
 
   return {
     selectedBoule,
     setSelectedBoule,
-    volume
+    volume,
+    increaseSelectedBoule,
+    decreaseSelectedBoule
   }
 }

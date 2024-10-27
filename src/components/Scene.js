@@ -8,7 +8,23 @@ import { Lights } from "./Lights"
 import { useGameControls } from '../hooks/useGameControls'
 
 export function Scene({ activeCamera, ready, boules, cochonette }) {
-  const { selectedBoule, volume } = useGameControls(boules, ready)
+  const { selectedBoule, setSelectedBoule, volume, increaseSelectedBoule, decreaseSelectedBoule } = useGameControls(boules, ready)
+  const [cameraChangedRecently, setCameraChangedRecently] = useState(false)
+
+  useEffect(() => {
+    console.log('Active camera changed to:', activeCamera)
+    setCameraChangedRecently(true)
+    
+    const timeout = setTimeout(() => {
+      setCameraChangedRecently(false)
+      increaseSelectedBoule()
+      setTimeout(() => {
+        decreaseSelectedBoule()
+      }, 5)
+    }, 5)
+
+    return () => clearTimeout(timeout)
+  }, [activeCamera])
 
   return (
     <>
@@ -28,6 +44,7 @@ export function Scene({ activeCamera, ready, boules, cochonette }) {
           onSelect={() => setSelectedBoule(index)}
           playing={selectedBoule === index}
           volume={selectedBoule === index ? volume : 0}
+          cameraChangedRecently={cameraChangedRecently}
         />
       ))}
 
@@ -36,6 +53,7 @@ export function Scene({ activeCamera, ready, boules, cochonette }) {
         color="yellow"
         metalness={0.2}
         position={[cochonette.x, 0.015, cochonette.z]}
+        activeCamera={activeCamera}
       />
 
       <OrbitControls makeDefault dampingFactor={0.3} />

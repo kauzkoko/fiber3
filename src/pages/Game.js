@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { Canvas } from "@react-three/fiber"
 import { useKey } from 'react-use'
 import { Scene } from "../components/Scene"
@@ -9,7 +9,7 @@ export function Game() {
   const [activeCamera, setActiveCamera] = useState(cameras[0])
   const [ready, setReady] = useState(false)
   
-  const { boules, cochonette } = useBoulePositions({ amount: 5 })
+  const { boules, cochonette } = useMemo(() => useBoulePositions({ amount: 5 }), [])
 
   useKey('c', () => {
     setActiveCamera(prev => {

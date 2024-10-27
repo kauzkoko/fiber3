@@ -13,13 +13,26 @@ function useAudio(url, volume = 1) {
   return audioRef
 }
 
-export function Boule({ onSelect, scale = 0.04, color, metalness = 0.5, src, ready = false, lineColor = "black", wireframe = false, volume = 0.1, ...props }) {
+export function Boule({ 
+  activeCamera,
+  onSelect, 
+  scale = 0.04, 
+  color, 
+  metalness = 0.5, 
+  src, 
+  ready = false, 
+  lineColor = "black", 
+  wireframe = false, 
+  volume = 0.1,
+  cameraChangedRecently,
+  ...props 
+}) {
   const [hovered, hover] = useState(false)
   const meshRef = useRef()
   const audioRef = useAudio(src, volume)
-  
+
   return (
-    <group>
+    <group key={`boule-${activeCamera}`}>
       <mesh 
         ref={meshRef}
         scale={scale}
@@ -39,16 +52,26 @@ export function Boule({ onSelect, scale = 0.04, color, metalness = 0.5, src, rea
         <Edges linewidth={2} threshold={15} color={hovered ? "yellow" : "black"} />
         <Outlines thickness={hovered ? 0.05 : 0.01} color={hovered ? "yellow" : "black"} />
         
-        {src && ready && (
+        {src && ready && !cameraChangedRecently && (
           <PositionalAudio 
             ref={audioRef}
             url={src}
             distance={1}
             loop={true}
-            delay={0.1}
           />
         )}
       </mesh>
+
+      {hovered && (
+        <Line 
+          points={[
+            [props.position[0], props.position[1], props.position[2]],
+            [props.position[0], props.position[1] + 1, props.position[2]]
+          ]}
+          color={lineColor}
+          lineWidth={8}
+        />
+      )}
     </group>
   )
 }

@@ -1,6 +1,9 @@
 import { PerspectiveCamera } from "@react-three/drei"
+import { useThree } from '@react-three/fiber'
+import { useEffect } from 'react'
 
 export function Cameras({ activeCamera, cochonette }) {
+
   return (
     <>
       <PerspectiveCamera
