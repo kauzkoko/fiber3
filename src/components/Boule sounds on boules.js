@@ -23,7 +23,7 @@ export function Boule({
   ready = false, 
   lineColor = "black", 
   wireframe = false, 
-  volume = 1,
+  volume = 0.1,
   cameraChangedRecently,
   selectedBoule,
   ...props 
@@ -57,9 +57,8 @@ export function Boule({
           <PositionalAudio 
             ref={audioRef}
             url={src}
-            distance={selectedBoule === "Cochonette" ? .2 : 1}
+            distance={1}
             loop={true}
-            autoplay={selectedBoule === "Cochonette"}
           />
         )}
       </mesh>

@@ -38,7 +38,7 @@ export function Scene({ activeCamera, ready, boules, cochonette }) {
           color={index === 0 ? "blue" : index < 3 ? "gray" : "silver"}
           wireframe={selectedBoule !== index}
           position={[pos.x, 0.04, pos.z]}
-          src={"/sounds/atmo.mp3"}
+          src={"/sounds/shortdeep.mp3"}
           lineColor={selectedBoule === index ? "black" : "black"}
           ready={ready}
           onSelect={() => setSelectedBoule(index)}
@@ -53,6 +53,9 @@ export function Scene({ activeCamera, ready, boules, cochonette }) {
         scale={0.015}
         color="yellow"
         metalness={0.2}
+        src={"/sounds/atmo.mp3"}
+        volume={0.1}
+        ready={ready}
         position={[cochonette.x, 0.015, cochonette.z]}
         activeCamera={activeCamera}
         selectedBoule={"Cochonette"}

@@ -43,6 +43,30 @@ export function Cameras({ activeCamera, cochonette }) {
         position={[-1, 0.3, 2]}
         fov={35}
       />
+
+      <PerspectiveCamera
+        makeDefault={activeCamera === 'cochonette-ultra'}
+        position={[cochonette.x - 0.15, 0.05, cochonette.z - 0.15]}
+        rotation={[0, Math.PI / 4, 0]}
+        // fov={20}  // Very narrow FOV for extreme close-up
+        fov={35}  // Very narrow FOV for extreme close-up
+      />
+
+      <PerspectiveCamera
+        makeDefault={activeCamera === 'cochonette-close'}
+        position={[cochonette.x - 0.3, 0.1, cochonette.z - 0.3]}
+        rotation={[0, Math.PI / 4, 0]}
+        // fov={25}  // Close-up view
+        fov={35}  // Close-up view
+      />
+
+      <PerspectiveCamera
+        makeDefault={activeCamera === 'cochonette-medium'}
+        position={[cochonette.x - 0.6, 0.2, cochonette.z - 0.6]}
+        rotation={[0, Math.PI / 4, 0]}
+        // fov={30}  // Medium close-up
+        fov={35}  // Medium close-up
+      />
     </>
   )
 }
