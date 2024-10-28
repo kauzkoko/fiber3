@@ -5,7 +5,7 @@ export const ControlsContainer = styled.div`
   top: 20px;
   left: 20px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 10px;
   z-index: 1000;
   padding: 10px;
@@ -14,19 +14,16 @@ export const ControlsContainer = styled.div`
   border: solid black 1px;
 `
 
-export const StatusDisplay = styled.div`
-  padding: 8px 12px;
-  min-width: ${props => props.width || '150px'};
-  font-weight: bold;
+export const ControlGroup = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 `
 
 export const Divider = styled.div`
-  border-left: 1px solid #ccc;
-  height: 24px;
-  margin: 0 8px;
+  border-top: 1px solid #ccc;
+  width: 100%;
+  margin: 5px 0;
 `
 
 export const SwitchCameraButton = styled.button`
@@ -63,4 +60,16 @@ export const KeyboardShortcut = styled.kbd`
   box-shadow: 0 1px 0 rgba(0,0,0,0.2);
   font-size: 0.9em;
   font-family: monospace;
+`
+
+export const StatusDisplay = styled.div`
+  padding: 8px 12px;
+  min-width: ${props => props.width || '300px'};
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 4px;
+  border: solid black 1px;
+  background: white;
 `

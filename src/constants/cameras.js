@@ -5,6 +5,7 @@ export const CAMERAS = [
   'player',
   'dramatic',
   'ground',
+  'drone',
   'cochonette-ultra',
   'cochonette-close',
   'cochonette-medium'

@@ -74,6 +74,14 @@ export function Boule({
             color={lineColor}
             lineWidth={8}
           />
+          <Line 
+            points={[
+              [props.position[0], props.position[1], props.position[2]],
+              [props.position[0], props.position[1] + 5, props.position[2]]
+            ]}
+            color={"orange"}
+            lineWidth={4}
+          />
           <Html
             position={[props.position[0], props.position[1] + .25, props.position[2]]}
             center

@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react"
 import { Canvas } from "@react-three/fiber"
 import { useKey } from 'react-use'
-import { Scene } from "../components/Scene"
+import { DroneScene } from "../components/DroneScene"
 import { useBoulePositions } from "../hooks/useBoulePositions"
 import { CameraControls } from '../components/CameraControls'
 import { ReadyStatus } from '../components/ReadyStatus'
@@ -13,7 +13,7 @@ import {
   StatusDisplay 
 } from '../components/styles/GameControls.styled'
 
-export function Game() {  
+export function Drone() {  
   const { boules, cochonette } = useMemo(() => useBoulePositions({ amount: 5 }), [])
   const { activeCamera, setActiveCamera, ready, setReady, cameras, switchCamera } = useGameControls(boules)
   return (
@@ -37,7 +37,7 @@ export function Game() {
       </ControlsContainer>
       
       <Canvas camera={false}>
-        <Scene 
+        <DroneScene
           activeCamera={activeCamera}
           ready={ready}
           setReady={setReady}

@@ -24,7 +24,17 @@ export function Home() {
           fontSize: '1.2rem'
         }}
       >
-        ENTRER / 들어가기 / ENTER
+         PÉTANQUE SPATIALE / 스페이셜 페탄큐 / SPATIAL PETANQUE
+      </Link>
+      <Link 
+        to="/drone"
+        style={{
+          textDecoration: 'none',
+          color: 'inherit',
+          fontSize: '1.2rem'
+        }}
+      >
+        DRONE / 드론 / DRONE
       </Link>
     </div>
   )

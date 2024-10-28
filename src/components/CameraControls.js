@@ -1,5 +1,9 @@
 import { GiCctvCamera } from "react-icons/gi"
-import { StatusDisplay, SwitchCameraButton, KeyboardShortcut } from './styles/GameControls.styled'
+import { 
+  StatusDisplay, 
+  SwitchCameraButton, 
+  KeyboardShortcut 
+} from './styles/GameControls.styled'
 
 export function CameraControls({ activeCamera, onCameraSwitch }) {
   return (
@@ -9,7 +13,7 @@ export function CameraControls({ activeCamera, onCameraSwitch }) {
         <span style={{ textTransform: 'capitalize' }}>{activeCamera} camera</span>
       </StatusDisplay>
       <SwitchCameraButton onClick={onCameraSwitch}>
-        <span style={{ paddingRight: '2px' }}>Switch camera</span>
+        <span>Switch camera</span>
         <KeyboardShortcut>c</KeyboardShortcut>
       </SwitchCameraButton>
     </>

@@ -2,7 +2,7 @@ import { PerspectiveCamera } from "@react-three/drei"
 import { useThree } from '@react-three/fiber'
 import { useEffect } from 'react'
 
-export function Cameras({ activeCamera, cochonette }) {
+export function Cameras({ activeCamera, cochonette, dronePosition, lookAtPosition }) {
 
   return (
     <>
@@ -42,6 +42,13 @@ export function Cameras({ activeCamera, cochonette }) {
         makeDefault={activeCamera === 'dramatic'}
         position={[-1, 0.3, 2]}
         fov={35}
+      />
+
+      <PerspectiveCamera
+        makeDefault={activeCamera === 'drone'}
+        position={dronePosition}
+        lookAt={lookAtPosition}  // Use the same lookAt target
+        fov={90}
       />
 
       <PerspectiveCamera

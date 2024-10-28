@@ -1,15 +1,22 @@
 import { GiCctvCamera } from "react-icons/gi"
-import { StatusDisplay, StatusButton, KeyboardShortcut } from './styles/GameControls.styled'
+import { 
+  StatusDisplay, 
+  StatusButton, 
+  KeyboardShortcut 
+} from './styles/GameControls.styled'
 
 export function ReadyStatus({ ready, onToggleReady }) {
   return (
     <>
-      <StatusDisplay>
+      <StatusDisplay width="200px">
         <GiCctvCamera />
         <span>Status: {ready ? 'Ready' : 'Not Ready'}</span>
       </StatusDisplay>
-      <StatusButton isReady={ready} onClick={onToggleReady}>
-        <span style={{ paddingRight: '2px' }}>Toggle ready</span>
+      <StatusButton 
+        isReady={ready} 
+        onClick={onToggleReady}
+      >
+        <span>Toggle ready</span>
         <KeyboardShortcut>r</KeyboardShortcut>
       </StatusButton>
     </>
