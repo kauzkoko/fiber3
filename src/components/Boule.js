@@ -1,12 +1,12 @@
 import { useState, useRef, useEffect } from "react"
 import { Edges, Outlines, Line, PositionalAudio, Html } from "@react-three/drei"
 
-function useAudio(url, volume = 1) {
+function useAudio(url, volume = 1, selectedBoule) {
   const audioRef = useRef()
   
   useEffect(() => {
     if (!audioRef.current) return
-    audioRef.current.setVolume(volume)
+    audioRef.current.setVolume(selectedBoule === "Cochonette" ? 0.005 : volume)
     audioRef.current.play()
   }, [url, volume])
 
@@ -30,7 +30,8 @@ export function Boule({
 }) {
   const [hovered, hover] = useState(false)
   const meshRef = useRef()
-  const audioRef = useAudio(src, volume)
+  const audioRef = useAudio(src, volume, selectedBoule)
+  console.log(selectedBoule)
 
   return (
     <group key={`boule-${activeCamera}`}>
@@ -60,6 +61,7 @@ export function Boule({
             distance={selectedBoule === "Cochonette" ? .2 : 1}
             loop={true}
             autoplay={selectedBoule === "Cochonette"}
+            volume={selectedBoule === "Cochonette" ? 0.01 : 0.1}
           />
         )}
       </mesh>

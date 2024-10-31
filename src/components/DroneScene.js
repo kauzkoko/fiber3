@@ -74,7 +74,7 @@ export function DroneScene({ activeCamera, ready, boules, cochonette }) {
         color="yellow"
         metalness={0.2}
         src={"/sounds/atmo.mp3"}
-        volume={0.1}
+        volume={0.05}
         ready={ready}
         position={[cochonette.x, 0.015, cochonette.z]}
         activeCamera={activeCamera}
